@@ -65,7 +65,7 @@ gst_gl_display_cocoa_nsapp_iteration (gpointer data)
 
 
   while ((event = ([NSApp nextEventMatchingMask:NSEventMaskAny
-      untilDate:[NSDate dateWithTimeIntervalSinceNow:0.10]
+      untilDate:[NSDate dateWithTimeIntervalSinceNow:0.00]
       inMode:NSDefaultRunLoopMode dequeue:YES])) != nil) {
     [NSApp sendEvent:event];
   }
@@ -86,7 +86,7 @@ gst_gl_display_cocoa_open_and_attach_source (gpointer data)
 
     GST_DEBUG ("Custom NSApp initialization done");
 
-    nsapp_source_id = g_timeout_add (60, gst_gl_display_cocoa_nsapp_iteration,
+    nsapp_source_id = g_timeout_add (1000, gst_gl_display_cocoa_nsapp_iteration,
         NULL);
 
     GST_DEBUG ("NSApp iteration loop attached, id %d", nsapp_source_id);
